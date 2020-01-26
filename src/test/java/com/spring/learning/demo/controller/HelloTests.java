@@ -1,8 +1,9 @@
 package com.spring.learning.demo.controller;
 
+import com.spring.learning.demo.util.NeoProperties;
 import org.junit.*;
-//import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -17,8 +18,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @WebAppConfiguration
+//@ComponentScan(basePackages = {"com.spring.learning.demo"})
 public class HelloTests {
     private MockMvc mvc;
+
 
     @Before
     public void setUp() throws Exception {
@@ -34,6 +37,16 @@ public class HelloTests {
 
         System.out.println("结果：" + resultActions.andReturn().getResponse().getContentAsString());
 //                .andExpect(content().string(equalTo("Hello World")));
+    }
+
+
+    @Autowired
+    private NeoProperties neoProperties;
+
+    @Test
+    public void testUtil() {
+//        NeoProperties neoProperties = new NeoProperties();
+        System.out.println(neoProperties.toString());
     }
 
 }
